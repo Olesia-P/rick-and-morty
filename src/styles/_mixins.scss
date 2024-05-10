@@ -1,0 +1,12 @@
+@mixin dfc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin dfcc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

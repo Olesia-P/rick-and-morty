@@ -1,0 +1,62 @@
+@import "../../../styles/main";
+
+.footer {
+    @include dfc;
+    font-size: $font-main;
+
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1rem;
+
+        .personalInfo {
+            @include dfc;
+            gap: 1rem;
+
+            .name {
+                color: $yellow;
+                font-weight: 900;
+                padding: 0 1rem;
+                @include dfc;
+            }
+
+            .personaLink {
+                color: white;
+                font-weight: 400;
+                text-decoration: none;
+                padding: 1rem;
+                @include dfc;
+                transition: ease-in-out 0.1s;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                .icon {
+                    height: 16px;
+                    width: 16px;
+                    padding-right: 0.5rem;
+                }
+            }
+        }
+
+        .techInfo {
+            @include dfc;
+            gap: 0.4rem;
+
+            .title {
+                color: rgb(151, 123, 203);
+                font-weight: 900;
+                padding: 0 1rem;
+                @include dfc;
+            }
+
+            .tech {
+                color: white;
+                font-size: $font-main;
+                font-weight: 400;
+                padding: 1rem;
+            }
+        }
+    }
+}
