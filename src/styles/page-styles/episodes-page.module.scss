@@ -1,0 +1,24 @@
+@import "../main";
+
+
+
+.container {
+    // background-color: white;
+    // // height: 100vh;
+    // max-width: 1280px;
+    // margin: 0 auto;
+
+
+    .title {
+        padding: 4rem 0 4rem 2rem;
+        margin: 0;
+        font-size: 36px;
+        font-weight: 400;
+    }
+
+    .list {
+        margin: 3rem auto 0 auto;
+        width: 70%;
+        padding-bottom: 3rem;
+    }
+}
