@@ -10,10 +10,13 @@ type ListProps = {
 
 export const List = ({ data, type }: ListProps) => {
   return (
-    <div className={css.container}>
+    <ul className={css.container}>
       {data?.results?.map((element) => (
-        <ListItem key={element.id} data={element} type={type} />
+        <div key={element.id} className={css.listItemWrapper}>
+          {" "}
+          <ListItem data={element} type={type} />
+        </div>
       ))}
-    </div>
+    </ul>
   );
 };

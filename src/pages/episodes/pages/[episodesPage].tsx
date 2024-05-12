@@ -4,6 +4,12 @@ import { useGetEpisodesOnePageQuery } from "../../../store/modules/api-slice";
 import { List } from "../../../components/list/list";
 import css from "../../../styles/page-styles/episodes-page.module.scss";
 import { PagesNavigationArrows } from "../../../components/pages-navigation-arrows/pages-navigation-arrows";
+import { PageTitle } from "../../../components/page-title/page-title";
+import {
+  parseErrorMessage,
+  parseErrorStatus,
+  turnPageIntoNumber,
+} from "../../../components/utils/functions";
 
 export default function EpisodesPage() {
   const router = useRouter();
@@ -12,36 +18,55 @@ export default function EpisodesPage() {
     data: episodesPageData = {},
     error,
     isError,
-    isLoading,
   } = useGetEpisodesOnePageQuery(episodesPage);
-
-  const turnPageIntoNumber = (
-    page: string | string[] | undefined
-  ): number | undefined => {
-    if (typeof page === "string") {
-      return parseInt(page);
-    } else {
-      return undefined;
-    }
-  };
 
   const currentPage = turnPageIntoNumber(episodesPage);
 
-  // console.log("EpisodesPageData", episodesPageData);
+  const parsedErrorStatus = parseErrorStatus(error);
+  const parsedErrorMessage = parseErrorMessage(error);
+
   return (
-    <article className={css.container}>
-      <h2 className={css.title}>Episodes</h2>
-      <section className={css.list}>
-        <List data={episodesPageData} type="episodes" />
-        {typeof currentPage !== "undefined" &&
-          Object.keys(episodesPageData).length !== 0 && (
-            <PagesNavigationArrows
-              currentPage={currentPage}
-              numberOfPages={episodesPageData.info.pages}
-              baseUrl="/episodes/pages/"
-            />
-          )}
-      </section>
-    </article>
+    <>
+      {!isError && (
+        <article className={css.container}>
+          <div className={css.title}>
+            <PageTitle text="Episodes" />
+          </div>
+          <section className={css.list}>
+            {typeof currentPage !== "undefined" &&
+              Object.keys(episodesPageData).length !== 0 && (
+                <div className={css.arrowsWrapper}>
+                  <PagesNavigationArrows
+                    currentPage={currentPage}
+                    numberOfPages={episodesPageData.info.pages}
+                    baseUrl="/episodes/pages/"
+                  />
+                </div>
+              )}
+
+            <List data={episodesPageData} type="episodes" />
+
+            {typeof currentPage !== "undefined" &&
+              Object.keys(episodesPageData).length !== 0 && (
+                <div className={css.arrowsWrapper}>
+                  <PagesNavigationArrows
+                    currentPage={currentPage}
+                    numberOfPages={episodesPageData.info.pages}
+                    baseUrl="/episodes/pages/"
+                  />
+                </div>
+              )}
+          </section>
+        </article>
+      )}
+
+      {isError && (
+        <aside className={css.error}>
+          <h2 className={css.errorMessage}>
+            {parsedErrorStatus} {parsedErrorMessage}
+          </h2>
+        </aside>
+      )}
+    </>
   );
 }

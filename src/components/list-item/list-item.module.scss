@@ -1,1 +1,40 @@
 @import "../../styles/main";
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    position: relative;
+
+    .cover {
+        height: 5rem;
+        width: 5rem;
+    }
+
+    .infoBlock {
+        margin: 0.5rem 0;
+
+        .title {
+            font-size: $font-main;
+            margin: 0.5rem;
+        }
+
+        .text {
+            color: $light-gray-text;
+            font-size: $font-main-smaller;
+            margin: 0.5rem;
+        }
+    }
+
+    .infoIcon {
+        color: $darker-blue;
+        margin-right: 2rem;
+        margin-left: auto;
+        cursor: pointer;
+
+        svg {
+            width: 1.7rem;
+            height: 1.7rem;
+        }
+    }
+}

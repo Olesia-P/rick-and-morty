@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { MdArrowForwardIos } from "react-icons/md";
 import cx from "classnames";
 import css from "./pages-navigarion-arrows.module.scss";
 
@@ -29,6 +30,7 @@ export const PagesNavigationArrows = ({
       setPage1(1);
       setPage2(2);
       setPage3(3);
+      setFirstPage(0);
     }
 
     if (numberOfPages > 4) {
@@ -40,6 +42,7 @@ export const PagesNavigationArrows = ({
         setPage1(currentPage - 2);
         setPage2(currentPage - 1);
         setPage3(currentPage);
+        setLastPage(0);
       }
     }
   };
@@ -68,8 +71,6 @@ export const PagesNavigationArrows = ({
     if (currentPage < numberOfPages && currentPage >= 1) {
       const nextPage = currentPage + 1;
       router.push(`${baseUrl}` + `${nextPage}`);
-    } else {
-      router.push(`${baseUrl}` + "1");
     }
   };
 
@@ -101,14 +102,14 @@ export const PagesNavigationArrows = ({
 
   return (
     <div className={css.pagesNavigation}>
-      <span
+      <i
         onClick={() => {
           moveToPrevPage(numberOfPages, currentPage, baseUrl);
         }}
+        className={cx(css.leftArrow, currentPage === 1 && css.noClick)}
       >
-        {" "}
-        arrow{" "}
-      </span>
+        <MdArrowForwardIos />
+      </i>
 
       {pagesToShow.map((element) => (
         <span
@@ -116,7 +117,9 @@ export const PagesNavigationArrows = ({
           className={cx(
             css.pageNumber,
             element === currentPage && css.currentPage,
-            element === 0 && css.displayNone
+            element === 0 && css.displayNone,
+            element === firstPage && css.firstPage,
+            element === lastPage && css.lastPage
           )}
           onClick={() => handlePageClick(numberOfPages, element, baseUrl)}
         >
@@ -124,14 +127,17 @@ export const PagesNavigationArrows = ({
         </span>
       ))}
 
-      <span
+      <i
         onClick={() => {
           moveToNextPage(numberOfPages, currentPage, baseUrl);
         }}
+        className={cx(
+          css.rightArrow,
+          currentPage === numberOfPages && css.noClick
+        )}
       >
-        {" "}
-        arrow{" "}
-      </span>
+        <MdArrowForwardIos />
+      </i>
     </div>
   );
 };

@@ -1,1 +1,118 @@
 @import "../../styles/main";
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.467);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    @include dfc;
+
+    .container {
+        background-color: $weak-black;
+        color: white;
+        width: 40rem;
+        padding: 1.5rem;
+        border-radius: $border-radius;
+        overflow-y: auto;
+        height: 20.5rem;
+        position: relative;
+
+        .cross {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+            padding: 0.6rem;
+            @include dfc;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: rgba(158, 157, 157, 0.667);
+            }
+
+            svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        .mainInfo {
+            display: flex;
+            gap: 1rem;
+
+            .cover {
+                width: 5rem;
+                height: 5rem;
+            }
+
+            .info {
+                .episodeTitle {
+                    font-size: $font-header3;
+                    margin: 0;
+                }
+
+                .text {
+                    color: $light-gray-text;
+                    font-weight: 600;
+                    margin: 0.5rem 0;
+                    font-size: $font-main-smaller;
+                }
+            }
+        }
+
+        .charactersInfo {
+            margin: 1rem 0;
+
+            .charactersTitle {
+                font-size: $font-header4;
+                margin: 0;
+            }
+
+            .charactersWrap {
+                display: flex;
+
+                gap: 1rem;
+                flex-wrap: wrap;
+
+                .characterCard {
+                    margin: 0.5rem 0;
+
+                    .characterImg {
+                        width: 5rem;
+                    }
+
+                    .characterName {
+                        width: 5rem;
+                        font-size: $font-main-smaller;
+                        margin: 0.2rem 0 0 0;
+                    }
+                }
+            }
+
+            .charactersButton {
+                color: $blue;
+                background-color: $black-button-color;
+                padding: 0.5rem 1rem;
+                font-size: $font-main-smaller;
+                font-weight: 600;
+                border: none;
+                border-radius: $border-radius;
+                margin-top: 0.5rem;
+                cursor: pointer;
+
+                &.displayNone {
+                    display: none;
+                }
+
+                &:hover {
+                    background-color: $black-button-hover-color;
+                }
+            }
+        }
+    }
+}

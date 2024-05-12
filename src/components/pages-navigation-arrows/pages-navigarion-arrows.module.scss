@@ -1,5 +1,60 @@
 @import "../../styles/main";
 
-.displayNone {
-    display: none;
+
+.pagesNavigation {
+
+    font-size: 18px;
+
+    font-weight: 900;
+    @include dfc;
+
+    .leftArrow,
+    .rightArrow {
+        color: $yellow;
+        height: 20px;
+        width: 20px;
+        padding: 0 0.5rem;
+
+        svg {
+
+            height: 20px;
+            width: 20px;
+        }
+
+        cursor: pointer;
+
+        &.noClick {
+            // pointer-events: none;
+            color: lightgray;
+            cursor: not-allowed;
+        }
+    }
+
+    .leftArrow {
+        transform: rotate(-180deg);
+    }
+
+    // .rightArrow {}
+
+    .pageNumber {
+
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+    .currentPage {
+        border: 2px solid $yellow;
+        border-radius: $border-radius;
+    }
+
+    .firstPage::after,
+    .lastPage::before {
+        content: "...";
+    }
+
+
+
+    .displayNone {
+        display: none;
+    }
 }

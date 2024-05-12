@@ -3,6 +3,16 @@
 
 .container {
     padding: 1rem;
-    border: 1px solid lightgrey;
+    border: $light-border;
     border-radius: $border-radius;
+
+
+
+    .listItemWrapper {
+        border-bottom: $light-border;
+
+        &.listItemWrapper:last-child {
+            border-bottom: none;
+        }
+    }
 }

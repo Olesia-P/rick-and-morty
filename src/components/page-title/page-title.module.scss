@@ -1,0 +1,17 @@
+@import "../../styles/main";
+
+.container {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 400;
+    position: relative;
+    width: fit-content;
+
+    &.container::before {
+        content: " ";
+        border-left: 4px solid $yellow;
+        height: 2.5rem;
+        border-radius: $border-radius;
+        margin-right: 0.5rem;
+    }
+}
