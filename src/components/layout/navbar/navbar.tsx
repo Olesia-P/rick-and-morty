@@ -9,7 +9,7 @@ export const Navbar = () => {
   const links = [
     { name: "Episodes", link: "/episodes/pages/1", icon: <BiMoviePlay /> },
     { name: "Characters", link: "/characters/pages/1", icon: <BsPeopleFill /> },
-    { name: "Locations", link: "/locations", icon: <MdLocationCity /> },
+    { name: "Locations", link: "/locations/pages/1", icon: <MdLocationCity /> },
   ];
 
   return (

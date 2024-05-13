@@ -6,11 +6,9 @@ export const store = configureStore({
   reducer: {
     // openings: openingsReducer,
     [rickMortyRestApi.reducerPath]: rickMortyRestApi.reducer,
-    // [localFakeShopApi.reducerPath]: localFakeShopApi.reducer,
-    // catalog: catalogReducer,
+
     characters: charactersSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(rickMortyRestApi.middleware),
-  //   .concat(localFakeShopApi.middleware),
 });

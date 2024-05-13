@@ -22,7 +22,7 @@ const isCharacterData = (data: any): data is SingleCharacter => {
 };
 
 const isLocationData = (data: any): data is SingleLocation => {
-  return data.hasOwnProperty("residents");
+  return data.hasOwnProperty("dimension");
 };
 
 export const ListItem = <
@@ -73,7 +73,22 @@ export const ListItem = <
     </>
   );
 
-  const renderLocation = (data: SingleLocation) => <></>;
+  const renderLocation = (data: SingleLocation) => (
+    <>
+      <li key={data.id} className={css.container}>
+        <img
+          src="/location-cover.jpg"
+          alt="location-cover-placeholder"
+          className={css.cover}
+        />
+        <div className={css.infoBlock}>
+          <h2 className={css.title}>{data.name}</h2>
+          <p className={css.text}>{data.type}</p>
+          <p className={css.text}>Aired: {data.dimension}</p>
+        </div>
+      </li>
+    </>
+  );
 
   const renderData = () => {
     if (isEpisodeData(data)) {

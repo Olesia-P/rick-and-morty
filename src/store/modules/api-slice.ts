@@ -34,20 +34,6 @@ export const rickMortyRestApi = createApi({
         };
       },
     }),
-
-    // getProducts: builder.query({
-    //   query: ({ category, filter }) => {
-    //     return {
-    //       url: category === "" ? "products" : `products/category/${category}`,
-    //       params: {
-    //         limit: filter.limit,
-    //         // sort: filter.alphabet,
-    //         // api stopped filtering by alphabet
-    //         // alphabet sorting is now implemented in transformResponse
-    //       },
-    //     };
-    //   },
-    // }),
   }),
 });
 
