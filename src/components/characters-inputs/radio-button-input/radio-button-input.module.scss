@@ -1,0 +1,16 @@
+@import "../../../styles/main";
+
+
+.fieldset {
+    border: 1px solid $darker-blue;
+    border-radius: $border-radius;
+    margin: 0.5rem 0;
+    width: 100%;
+
+    .legend {
+        border-radius: $border-radius;
+        color: $darker-blue;
+        font-size: $font-main;
+        font-weight: 700;
+    }
+}

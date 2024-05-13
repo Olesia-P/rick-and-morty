@@ -21,6 +21,19 @@ export const rickMortyRestApi = createApi({
         };
       },
     }),
+    getCharactersOnePage: builder.query({
+      query: ({ name, gender, status, page }) => {
+        return {
+          url: "character",
+          params: {
+            name: name,
+            gender: gender,
+            status: status,
+            page: page,
+          },
+        };
+      },
+    }),
 
     // getProducts: builder.query({
     //   query: ({ category, filter }) => {
@@ -38,5 +51,8 @@ export const rickMortyRestApi = createApi({
   }),
 });
 
-export const { useGetEpisodesOnePageQuery, useGetOneCharacterQuery } =
-  rickMortyRestApi;
+export const {
+  useGetEpisodesOnePageQuery,
+  useGetOneCharacterQuery,
+  useGetCharactersOnePageQuery,
+} = rickMortyRestApi;

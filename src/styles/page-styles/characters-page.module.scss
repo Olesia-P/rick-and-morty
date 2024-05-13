@@ -4,7 +4,12 @@
     min-height: calc(100vh - 3.5rem - 8rem);
 
     .title {
-        padding: 4rem 0 4rem 2.9rem;
+        padding: 4rem 0 3rem 2.9rem;
+    }
+
+    .inputs {
+        width: 40%;
+        margin: 1rem 2rem;
     }
 
     .list {
@@ -15,15 +20,17 @@
         .arrowsWrapper {
             margin: 1.5rem;
         }
+
+
     }
 
     .error {
-
         @include dfc;
 
         .errorMessage {
             margin: 0;
-            font-size: 40px;
+            font-size: 30px;
+            color: gray;
         }
     }
 }

@@ -1,0 +1,30 @@
+@import "../../styles/main";
+
+.container {
+
+
+    .inputWrap {
+
+        width: 100%;
+
+        input {
+            margin-right: 1rem;
+            font-size: $font-main;
+            padding: 0.5rem;
+            width: 18rem;
+            border: 1px solid $darker-blue;
+            border-radius: $border-radius;
+        }
+
+        button {
+            padding: 0.5rem;
+            background-color: $darker-blue;
+            color: white;
+            font-size: $font-main;
+            border-radius: $border-radius;
+            border: 1px solid transparent;
+            margin: 0.5rem 0;
+            width: 5rem;
+        }
+    }
+}

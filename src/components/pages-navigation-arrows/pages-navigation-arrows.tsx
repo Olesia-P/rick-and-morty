@@ -15,7 +15,6 @@ export const PagesNavigationArrows = ({
   numberOfPages,
   baseUrl,
 }: PagesNavigationArrowsProps) => {
-  // remember to add style if arrow cant be clicked
   const router = useRouter();
   const [page1, setPage1] = useState(0);
   const [page2, setPage2] = useState(0);
@@ -23,41 +22,63 @@ export const PagesNavigationArrows = ({
   const [firstPage, setFirstPage] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
+  // console.log("page1", page1);
+  // console.log("page2", page2);
+  // console.log("page3", page3);
+  // console.log("firstPage", firstPage);
+  // console.log("lastPage", lastPage);
+  // console.log("currentPage", currentPage);
+  // console.log("numberOfPages", numberOfPages);
+
   const pagesToShow = [firstPage, page1, page2, page3, lastPage];
 
   const decidePages = (currentPage: number, numberOfPages: number): void => {
-    if (numberOfPages <= 3 || (numberOfPages > 4 && currentPage === 1)) {
+    if (numberOfPages === 3) {
       setPage1(1);
       setPage2(2);
       setPage3(3);
       setFirstPage(0);
+      setLastPage(0);
+    }
+    if (numberOfPages === 2) {
+      setPage1(1);
+      setPage2(2);
+      setPage3(0);
+      setFirstPage(0);
+      setLastPage(0);
+    }
+    if (numberOfPages === 1) {
+      setPage1(1);
+      setPage2(0);
+      setPage3(0);
+      setFirstPage(0);
+      setLastPage(0);
     }
 
     if (numberOfPages > 4) {
-      if (currentPage > 1 && currentPage + 1 < numberOfPages) {
+      if (currentPage === 1) {
+        setPage1(1);
+        setPage2(2);
+        setPage3(3);
+        setLastPage(numberOfPages);
+        setFirstPage(0);
+      } else if (currentPage > 2 && currentPage + 2 < numberOfPages) {
         setPage1(currentPage - 1);
         setPage2(currentPage);
         setPage3(currentPage + 1);
+        setLastPage(numberOfPages);
+        setFirstPage(1);
+      } else if (numberOfPages - 1 === currentPage) {
+        setPage1(currentPage - 1);
+        setPage2(currentPage);
+        setPage3(currentPage + 1);
+        setLastPage(0);
+        setFirstPage(1);
       } else if (currentPage === numberOfPages) {
         setPage1(currentPage - 2);
         setPage2(currentPage - 1);
         setPage3(currentPage);
         setLastPage(0);
-      }
-    }
-  };
-
-  const decideFurthermostPages = (
-    currentPage: number,
-    numberOfPages: number
-  ): void => {
-    if (numberOfPages > 4) {
-      if (currentPage <= 3) {
-        setLastPage(numberOfPages);
-      } else if (currentPage > 3 && currentPage !== numberOfPages) {
-        setFirstPage(1);
-        setLastPage(numberOfPages);
-      } else if (currentPage >= currentPage - 2) {
         setFirstPage(1);
       }
     }
@@ -97,7 +118,6 @@ export const PagesNavigationArrows = ({
 
   useEffect(() => {
     decidePages(currentPage, numberOfPages);
-    decideFurthermostPages(currentPage, numberOfPages);
   }, [currentPage, numberOfPages]);
 
   return (
