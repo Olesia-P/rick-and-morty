@@ -2,6 +2,7 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { BiLogoNetlify } from "react-icons/bi";
+import { HiMiniServer } from "react-icons/hi2";
 import css from "./footer.module.scss";
 
 export const Footer = () => {
@@ -20,6 +21,11 @@ export const Footer = () => {
       name: "Email: pryhun.o@gmail.com",
       link: "mailto:pryhun.o@gmail.com",
       icon: <IoIosMail />,
+    },
+    {
+      name: "API",
+      link: "https://rickandmortyapi.com/documentation/",
+      icon: <HiMiniServer />,
     },
   ];
 
