@@ -20,8 +20,6 @@
         .arrowsWrapper {
             margin: 1.5rem;
         }
-
-
     }
 
     .error {
@@ -31,6 +29,35 @@
             margin: 0;
             font-size: 30px;
             color: gray;
+        }
+    }
+}
+
+@include lowTablet {
+    .container {
+
+        .title {
+            padding: 2rem 0 1rem 2rem;
+        }
+
+        .inputs {
+            width: 70%;
+        }
+
+        .list {
+            margin: 2rem auto 0 2rem;
+            width: 80%;
+
+
+            .arrowsWrapper {
+                margin: 0;
+            }
+        }
+
+        .error {
+            .errorMessage {
+                font-size: 20px;
+            }
         }
     }
 }

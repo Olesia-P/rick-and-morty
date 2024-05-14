@@ -4,7 +4,6 @@ import charactersSliceReducer from "./modules/characters-slice";
 
 export const store = configureStore({
   reducer: {
-    // openings: openingsReducer,
     [rickMortyRestApi.reducerPath]: rickMortyRestApi.reducer,
 
     characters: charactersSliceReducer,

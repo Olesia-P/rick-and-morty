@@ -12,6 +12,7 @@
         .personalInfo {
             @include dfc;
             gap: 1rem;
+            flex-wrap: wrap;
 
             .name {
                 color: $yellow;
@@ -43,6 +44,7 @@
         .techInfo {
             @include dfc;
             gap: 0.4rem;
+            flex-wrap: wrap;
 
             .title {
                 color: rgb(151, 123, 203);
@@ -56,6 +58,32 @@
                 font-size: $font-main;
                 font-weight: 400;
                 padding: 1rem;
+            }
+        }
+    }
+}
+
+@include lowTablet {
+    .footer {
+        .container {
+            padding: 0.5rem;
+
+            .personalInfo {
+                gap: 0;
+                padding: 0.3rem;
+
+                .personaLink {
+                    padding: 0.5rem;
+                }
+            }
+
+            .techInfo {
+                gap: 0;
+                padding: 0.3rem;
+
+                .tech {
+                    padding: 0.5rem;
+                }
             }
         }
     }

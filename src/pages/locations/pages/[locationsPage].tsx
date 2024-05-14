@@ -78,7 +78,8 @@ export default function LocationsPage() {
 
         <section className={css.list}>
           {typeof currentPage !== "undefined" &&
-            typeof locationsData !== null && (
+            typeof locationsData !== null &&
+            !isError && (
               <div className={css.arrowsWrapper}>
                 <PagesNavigationArrows
                   currentPage={currentPage}
@@ -89,11 +90,12 @@ export default function LocationsPage() {
             )}
 
           {!isError && locationsData !== null && (
-            <List data={locationsData?.locations} />
+            <List data={locationsData?.locations} type="locations" />
           )}
 
           {typeof currentPage !== "undefined" &&
-            typeof locationsData !== null && (
+            typeof locationsData !== null &&
+            !isError && (
               <div className={css.arrowsWrapper}>
                 <PagesNavigationArrows
                   currentPage={currentPage}

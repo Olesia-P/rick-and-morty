@@ -1,6 +1,7 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
+import { BiLogoNetlify } from "react-icons/bi";
 import css from "./footer.module.scss";
 
 export const Footer = () => {
@@ -11,13 +12,26 @@ export const Footer = () => {
       icon: <FaGithub />,
     },
     {
+      name: "Deployed site",
+      link: "https://rick-and-morty-pryhun.netlify.app/episodes/pages/1",
+      icon: <BiLogoNetlify />,
+    },
+    {
       name: "Email: pryhun.o@gmail.com",
       link: "mailto:pryhun.o@gmail.com",
       icon: <IoIosMail />,
     },
   ];
 
-  const technologies = ["Next.js", "TypeScript", "SCSS", "CSS Modules"];
+  const technologies = [
+    "Next.js",
+    "TypeScript",
+    "Redux",
+    "GraphQL",
+    "SCSS",
+    "CSS Modules",
+    "Classnames (lib)",
+  ];
   return (
     <footer className={css.footer}>
       <div className={css.container}>

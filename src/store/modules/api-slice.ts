@@ -14,7 +14,7 @@ export const rickMortyRestApi = createApi({
         };
       },
     }),
-    getOneCharacter: builder.query({
+    getMultipleCharacters: builder.query({
       query: (charactersIds) => {
         return {
           url: `character/${charactersIds}`,
@@ -39,6 +39,6 @@ export const rickMortyRestApi = createApi({
 
 export const {
   useGetEpisodesOnePageQuery,
-  useGetOneCharacterQuery,
+  useGetMultipleCharactersQuery,
   useGetCharactersOnePageQuery,
 } = rickMortyRestApi;

@@ -1,10 +1,7 @@
 @import "../../styles/main";
 
-
 .pagesNavigation {
-
     font-size: 18px;
-
     font-weight: 900;
     @include dfc;
 
@@ -24,7 +21,6 @@
         cursor: pointer;
 
         &.noClick {
-            // pointer-events: none;
             color: lightgray;
             cursor: not-allowed;
         }
@@ -34,10 +30,7 @@
         transform: rotate(-180deg);
     }
 
-    // .rightArrow {}
-
     .pageNumber {
-
         padding: 0.5rem;
         cursor: pointer;
     }
@@ -51,8 +44,6 @@
     .lastPage::before {
         content: "...";
     }
-
-
 
     .displayNone {
         display: none;

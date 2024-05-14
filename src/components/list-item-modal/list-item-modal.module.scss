@@ -10,8 +10,21 @@
     right: 0;
     z-index: 1;
     @include dfc;
+}
 
-    .container {
+.container {
+    width: 40rem;
+    height: 20.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    @include dfc;
+    z-index: 2;
+
+    .modal {
         background-color: $weak-black;
         color: white;
         width: 40rem;
@@ -75,7 +88,6 @@
 
             .charactersWrap {
                 display: flex;
-
                 gap: 1rem;
                 flex-wrap: wrap;
 
@@ -111,6 +123,32 @@
 
                 &:hover {
                     background-color: $black-button-hover-color;
+                }
+            }
+        }
+    }
+}
+
+
+@include lowTablet {
+
+    .overlay {
+        display: none;
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+
+        .modal {
+            height: calc(100% - 3rem);
+            width: 100%;
+
+            .mainInfo {
+                .info {
+                    .episodeTitle {
+                        max-width: 12rem;
+                    }
                 }
             }
         }

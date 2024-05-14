@@ -8,29 +8,13 @@ import {
 } from "../../types/types";
 import { ListItemModal } from "../list-item-modal/list-item-modal";
 
-type ListItemProps<T> = {
-  data?: T;
-};
-type Modal = boolean;
-
-const isEpisodeData = (data: any): data is SingleEpisode => {
-  return data.hasOwnProperty("air_date");
+type ListItemProps = {
+  data?: SingleCharacter | SingleEpisode | SingleLocation;
+  type: string;
 };
 
-const isCharacterData = (data: any): data is SingleCharacter => {
-  return data.hasOwnProperty("gender");
-};
-
-const isLocationData = (data: any): data is SingleLocation => {
-  return data.hasOwnProperty("dimension");
-};
-
-export const ListItem = <
-  T extends SingleEpisode | SingleCharacter | SingleLocation
->({
-  data,
-}: ListItemProps<T>) => {
-  const [isModalOpen, setIsModalOpen] = useState<Modal>(false);
+export const ListItem = ({ data, type }: ListItemProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const renderEpisode = (data: SingleEpisode) => (
     <>
@@ -91,12 +75,12 @@ export const ListItem = <
   );
 
   const renderData = () => {
-    if (isEpisodeData(data)) {
-      return renderEpisode(data);
-    } else if (isCharacterData(data)) {
-      return renderCharacter(data);
-    } else if (isLocationData(data)) {
-      return renderLocation(data);
+    if (type === "episodes") {
+      return renderEpisode(data as SingleEpisode);
+    } else if (type === "characters") {
+      return renderCharacter(data as SingleCharacter);
+    } else if (type === "locations") {
+      return renderLocation(data as SingleLocation);
     }
 
     return null;

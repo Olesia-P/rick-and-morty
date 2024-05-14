@@ -28,3 +28,32 @@
         }
     }
 }
+
+@include lowTablet {
+    .container {
+
+        .title {
+            padding: 2rem 0 2rem 1rem;
+        }
+
+        .inputs {
+            width: 70%;
+        }
+
+        .list {
+            margin: 0 auto 0 2rem;
+            width: 80%;
+
+
+            .arrowsWrapper {
+                margin: 0;
+            }
+        }
+
+        .error {
+            .errorMessage {
+                font-size: 20px;
+            }
+        }
+    }
+}

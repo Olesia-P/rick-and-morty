@@ -28,8 +28,6 @@ export default function CharactersPage() {
     isError,
   } = useGetCharactersOnePageQuery(charactersParams);
 
-  // console.log("charactersPageData", charactersPageData);
-
   const dispatch = useDispatch();
   const currentPage = turnPageIntoNumber(charactersPage);
   const parsedErrorStatus = parseErrorStatus(error);
@@ -64,7 +62,7 @@ export default function CharactersPage() {
             )}
 
           {!isError && Object.keys(charactersPageData).length !== 0 && (
-            <List data={charactersPageData} />
+            <List data={charactersPageData} type="characters" />
           )}
 
           {typeof currentPage !== "undefined" &&

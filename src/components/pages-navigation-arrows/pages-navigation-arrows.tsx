@@ -22,14 +22,6 @@ export const PagesNavigationArrows = ({
   const [firstPage, setFirstPage] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
-  // console.log("page1", page1);
-  // console.log("page2", page2);
-  // console.log("page3", page3);
-  // console.log("firstPage", firstPage);
-  // console.log("lastPage", lastPage);
-  // console.log("currentPage", currentPage);
-  // console.log("numberOfPages", numberOfPages);
-
   const pagesToShow = [firstPage, page1, page2, page3, lastPage];
 
   const decidePages = (currentPage: number, numberOfPages: number): void => {

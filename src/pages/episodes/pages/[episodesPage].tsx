@@ -45,7 +45,7 @@ export default function EpisodesPage() {
             )}
 
           {!isError && Object.keys(episodesPageData).length !== 0 && (
-            <List data={episodesPageData} />
+            <List data={episodesPageData} type="episodes" />
           )}
 
           {typeof currentPage !== "undefined" &&
