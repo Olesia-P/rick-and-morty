@@ -1,6 +1,7 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
 import cx from "classnames";
+import Link from "next/link";
 import css from "./mobile-menu.module.scss";
 
 type MobileMenuProps = {
@@ -41,9 +42,14 @@ export const MobileMenu = ({
         </div>
         <div className={css.linksWrap}>
           {links.map((element) => (
-            <a key={element.name} href={element.link} className={css.navLink}>
-              <i className={css.icon}>{element.icon}</i> {element.name}
-            </a>
+            <Link key={element.name} href={element.link}>
+              <span
+                className={css.navLink}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <i className={css.icon}>{element.icon}</i> {element.name}
+              </span>
+            </Link>
           ))}
         </div>
       </nav>

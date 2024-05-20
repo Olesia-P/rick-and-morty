@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BiMoviePlay } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Link from "next/link";
 import { MdLocationCity } from "react-icons/md";
 import css from "./navbar.module.scss";
 import { MobileMenu } from "../navbar/mobile-menu/mobile-menu";
@@ -31,9 +32,11 @@ export const Navbar = () => {
         {!isLowTablet && (
           <>
             {links.map((element) => (
-              <a key={element.name} href={element.link} className={css.navLink}>
-                <i className={css.icon}>{element.icon}</i> {element.name}
-              </a>
+              <Link key={element.name} href={element.link}>
+                <span className={css.navLink}>
+                  <i className={css.icon}>{element.icon}</i> {element.name}
+                </span>
+              </Link>
             ))}
           </>
         )}

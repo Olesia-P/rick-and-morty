@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { gql, GraphQLClient } from "graphql-request";
+import { useQuery } from "@apollo/client";
+import { LOAD_LOCATIONS } from "../../../graphql/queries";
 import { List } from "../../../components/list/list";
 import css from "../../../styles/page-styles/locations-page.module.scss";
 import { PagesNavigationArrows } from "../../../components/pages-navigation-arrows/pages-navigation-arrows";
@@ -8,14 +9,9 @@ import { PageTitle } from "../../../components/page-title/page-title";
 import { turnPageIntoNumber } from "../../../utils/functions";
 
 export default function LocationsPage() {
-  const [locationsData, setLocationsData] = useState<null | any>(null);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("L");
+  const [isPaginationError, setIsPaginationError] = useState(false);
   const router = useRouter();
   const { locationsPage } = router.query;
-
-  const endpoint = "https://rickandmortyapi.com/graphql";
-  const client = new GraphQLClient(endpoint);
 
   const setCurrentPage = (
     page: string | string[] | undefined
@@ -28,46 +24,18 @@ export default function LocationsPage() {
   };
 
   const currentPage = setCurrentPage(locationsPage);
-  const query = gql`
-    query LocationsQuery {
-      locations(page: ${currentPage}) {
-        info {
-          count
-          pages
-        }
-        results {
-          id
-          name
-          type
-          dimension
-        }
-      }
-    }
-  `;
 
-  const fetchData = async () => {
-    try {
-      const data = await client.request(query);
-      setLocationsData(data);
-    } catch (error) {
-      if (error) {
-        setIsError(true);
-      }
-    }
-  };
+  const { error, loading, data } = useQuery(LOAD_LOCATIONS, {
+    variables: { page: currentPage },
+  });
+
+  // console.log("data", data);
 
   useEffect(() => {
-    if (currentPage) {
-      fetchData();
+    if (data?.locations?.info?.pages === null) {
+      setIsPaginationError(true);
     }
-  }, [currentPage]);
-
-  useEffect(() => {
-    if (locationsData?.locations?.info?.pages === null) {
-      setIsError(true);
-      setErrorMessage("No locations found");
-    }
-  }, [locationsData]);
+  }, [data]);
 
   return (
     <>
@@ -75,40 +43,39 @@ export default function LocationsPage() {
         <div className={css.title}>
           <PageTitle text="Locations" />
         </div>
-
-        <section className={css.list}>
-          {typeof currentPage !== "undefined" &&
-            typeof locationsData !== null &&
-            !isError && (
+        {typeof currentPage !== "undefined" &&
+          data &&
+          !error &&
+          !isPaginationError && (
+            <section className={css.list}>
               <div className={css.arrowsWrapper}>
                 <PagesNavigationArrows
                   currentPage={currentPage}
-                  numberOfPages={locationsData?.locations?.info?.pages}
+                  numberOfPages={data?.locations?.info?.pages}
                   baseUrl="/locations/pages/"
                 />
               </div>
-            )}
 
-          {!isError && locationsData !== null && (
-            <List data={locationsData?.locations} type="locations" />
+              <List data={data?.locations} type="locations" />
+
+              <div className={css.arrowsWrapper}>
+                <PagesNavigationArrows
+                  currentPage={currentPage}
+                  numberOfPages={data?.locations?.info?.pages}
+                  baseUrl="/locations/pages/"
+                />
+              </div>
+            </section>
           )}
 
-          {typeof currentPage !== "undefined" &&
-            typeof locationsData !== null &&
-            !isError && (
-              <div className={css.arrowsWrapper}>
-                <PagesNavigationArrows
-                  currentPage={currentPage}
-                  numberOfPages={locationsData?.locations?.info?.pages}
-                  baseUrl="/locations/pages/"
-                />
-              </div>
-            )}
-        </section>
-
-        {isError && (
+        {error && (
           <aside className={css.error}>
-            <h2 className={css.errorMessage}>{errorMessage}</h2>
+            <h2 className={css.errorMessage}>{error.message}</h2>
+          </aside>
+        )}
+        {isPaginationError && (
+          <aside className={css.error}>
+            <h2 className={css.errorMessage}>No locations found</h2>
           </aside>
         )}
       </article>
