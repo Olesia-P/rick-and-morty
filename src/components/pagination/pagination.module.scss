@@ -1,0 +1,12 @@
+@import "../../styles/main";
+
+
+.arrowsWrapper {
+    margin: 1.5rem;
+}
+
+@include lowTablet {
+    .arrowsWrapper {
+        margin: 0;
+    }
+}

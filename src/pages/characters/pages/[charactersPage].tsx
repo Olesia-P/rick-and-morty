@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useGetCharactersOnePageQuery } from "../../../store/modules/api-slice";
 import { List } from "../../../components/list/list";
 import css from "../../../styles/page-styles/characters-page.module.scss";
-import { PagesNavigationArrows } from "../../../components/pages-navigation-arrows/pages-navigation-arrows";
 import { PageTitle } from "../../../components/page-title/page-title";
 import {
   parseErrorMessage,
@@ -14,6 +13,7 @@ import {
 import { CharactersInputs } from "../../../components/characters-inputs/characters-inputs";
 import { CharactersState } from "../../../types/types";
 import { changePage } from "../../../store/modules/characters-slice";
+import { Pagination } from "../../../components/pagination/pagination";
 
 export default function CharactersPage() {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function CharactersPage() {
       state.characters.charactersParams
   );
   const {
-    data: charactersPageData = {},
+    data: charactersPageData,
     error,
     isError,
   } = useGetCharactersOnePageQuery(charactersParams);
@@ -45,38 +45,22 @@ export default function CharactersPage() {
         <div className={css.title}>
           <PageTitle text="Characters" />
         </div>
-        <section className={css.inputs}>
-          <CharactersInputs />
-        </section>
-        <section className={css.list}>
-          {typeof currentPage !== "undefined" &&
-            !isError &&
-            Object.keys(charactersPageData).length !== 0 && (
-              <div className={css.arrowsWrapper}>
-                <PagesNavigationArrows
-                  currentPage={currentPage}
-                  numberOfPages={charactersPageData.info.pages}
-                  baseUrl="/characters/pages/"
-                />
-              </div>
-            )}
-
-          {!isError && Object.keys(charactersPageData).length !== 0 && (
-            <List data={charactersPageData} type="characters" />
-          )}
-
-          {typeof currentPage !== "undefined" &&
-            !isError &&
-            Object.keys(charactersPageData).length !== 0 && (
-              <div className={css.arrowsWrapper}>
-                <PagesNavigationArrows
-                  currentPage={currentPage}
-                  numberOfPages={charactersPageData.info.pages}
-                  baseUrl="/characters/pages/"
-                />
-              </div>
-            )}
-        </section>
+        {currentPage && !isError && charactersPageData && (
+          <>
+            <section className={css.inputs}>
+              <CharactersInputs />
+            </section>
+            <section className={css.list}>
+              <Pagination
+                currentPage={currentPage}
+                numberOfPages={charactersPageData.info.pages}
+                baseUrl="/characters/pages/"
+              >
+                <List data={charactersPageData} type="characters" />{" "}
+              </Pagination>
+            </section>
+          </>
+        )}
         {isError && parsedErrorStatus === 404 && (
           <aside className={css.error}>
             <h3 className={css.errorMessage}>Characters not found</h3>
@@ -85,7 +69,6 @@ export default function CharactersPage() {
         {isError && parsedErrorStatus !== 404 && (
           <aside className={css.error}>
             <h3 className={css.errorMessage}>
-              {" "}
               {parsedErrorStatus} {parsedErrorMessage}
             </h3>
           </aside>
