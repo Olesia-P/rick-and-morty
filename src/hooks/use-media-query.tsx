@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export default function useMediaQuery(maxWidth: number) {
   const [state, setState] = useState({
-    windowWidth: typeof window !== "undefined" ? window.innerWidth : 0,
+    windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0,
     isDesiredWidth: false,
   });
 
@@ -18,8 +18,8 @@ export default function useMediaQuery(maxWidth: number) {
       const isDesiredWidth = currentWindowWidth < maxWidth;
       setState({ windowWidth: currentWindowWidth, isDesiredWidth });
     };
-    window.addEventListener("resize", resizeHandler);
-    return () => window.removeEventListener("resize", resizeHandler);
+    window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
   }, [state.windowWidth]);
 
   return state.isDesiredWidth;

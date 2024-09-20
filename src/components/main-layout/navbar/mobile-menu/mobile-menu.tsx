@@ -1,8 +1,8 @@
-import React from "react";
-import { IoClose } from "react-icons/io5";
-import cx from "classnames";
-import Link from "next/link";
-import css from "./mobile-menu.module.scss";
+import React from 'react';
+import { IoClose } from 'react-icons/io5';
+import cx from 'classnames';
+import Link from 'next/link';
+import css from './mobile-menu.module.scss';
 
 type MobileMenuProps = {
   links: {

@@ -1,6 +1,6 @@
-import React from "react";
-import css from "./pagination.module.scss";
-import { PagesNavigationArrows } from "./pages-navigation-arrows/pages-navigation-arrows";
+import React from 'react';
+import css from './pagination.module.scss';
+import { PagesNavigationArrows } from './pages-navigation-arrows/pages-navigation-arrows';
 
 type PaginationProps = {
   children: React.ReactNode;

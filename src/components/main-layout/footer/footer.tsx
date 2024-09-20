@@ -1,42 +1,42 @@
-import React from "react";
-import { FaGithub } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
-import { BiLogoNetlify } from "react-icons/bi";
-import { HiMiniServer } from "react-icons/hi2";
-import css from "./footer.module.scss";
+import React from 'react';
+import { FaGithub } from 'react-icons/fa';
+import { IoIosMail } from 'react-icons/io';
+import { BiLogoNetlify } from 'react-icons/bi';
+import { HiMiniServer } from 'react-icons/hi2';
+import css from './footer.module.scss';
 
 export const Footer = () => {
   const linksPersonal = [
     {
-      name: "GitHub account",
-      link: "https://github.com/Olesia-P",
+      name: 'GitHub account',
+      link: 'https://github.com/Olesia-P',
       icon: <FaGithub />,
     },
     {
-      name: "Deployed site",
-      link: "https://rick-and-morty-pryhun.netlify.app/episodes/pages/1",
+      name: 'Deployed site',
+      link: 'https://rick-and-morty-pryhun.netlify.app/episodes/pages/1',
       icon: <BiLogoNetlify />,
     },
     {
-      name: "Email: pryhun.o@gmail.com",
-      link: "mailto:pryhun.o@gmail.com",
+      name: 'Email: pryhun.o@gmail.com',
+      link: 'mailto:pryhun.o@gmail.com',
       icon: <IoIosMail />,
     },
     {
-      name: "API",
-      link: "https://rickandmortyapi.com/documentation/",
+      name: 'API',
+      link: 'https://rickandmortyapi.com/documentation/',
       icon: <HiMiniServer />,
     },
   ];
 
   const technologies = [
-    "Next.js",
-    "TypeScript",
-    "Redux",
-    "GraphQL",
-    "SCSS",
-    "CSS Modules",
-    "Classnames (lib)",
+    'Next.js',
+    'TypeScript',
+    'Redux',
+    'GraphQL',
+    'SCSS',
+    'CSS Modules',
+    'Classnames (lib)',
   ];
   return (
     <footer className={css.footer}>

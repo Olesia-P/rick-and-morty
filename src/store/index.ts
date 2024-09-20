@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { rickMortyRestApi } from "./modules/api-slice";
-import charactersSliceReducer from "./modules/characters-slice";
+import { configureStore } from '@reduxjs/toolkit';
+import { rickMortyRestApi } from './modules/api-slice';
+import charactersSliceReducer from './modules/characters-slice';
 
 export const store = configureStore({
   reducer: {

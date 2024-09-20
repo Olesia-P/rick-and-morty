@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { MdArrowForwardIos } from "react-icons/md";
-import cx from "classnames";
-import css from "./pages-navigation-arrows.module.scss";
+/* eslint-disable @typescript-eslint/no-shadow */
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { MdArrowForwardIos } from 'react-icons/md';
+import cx from 'classnames';
+import css from './pages-navigation-arrows.module.scss';
 
 type PagesNavigationArrowsProps = {
   currentPage: number;
@@ -12,7 +13,7 @@ type PagesNavigationArrowsProps = {
 
 type PageItem = {
   number: number;
-  status: "current page" | "main page" | "first page" | "last page";
+  status: 'current page' | 'main page' | 'first page' | 'last page';
 };
 
 export const PagesNavigationArrows = ({
@@ -25,7 +26,7 @@ export const PagesNavigationArrows = ({
 
   const generatePages = (
     currentPage: number,
-    numberOfPages: number
+    numberOfPages: number,
   ): PageItem[] => {
     let pages: PageItem[] = [];
 
@@ -33,26 +34,26 @@ export const PagesNavigationArrows = ({
       for (let i = 1; i <= numberOfPages; i++) {
         pages.push({
           number: i,
-          status: i === currentPage ? "current page" : "main page",
+          status: i === currentPage ? 'current page' : 'main page',
         });
       }
       return pages;
     }
 
     if (currentPage > 2) {
-      pages.push({ number: 1, status: "first page" });
+      pages.push({ number: 1, status: 'first page' });
     }
 
     const mainPages: PageItem[] = [
-      { number: currentPage - 1, status: "main page" as const },
-      { number: currentPage, status: "current page" as const },
-      { number: currentPage + 1, status: "main page" as const },
+      { number: currentPage - 1, status: 'main page' as const },
+      { number: currentPage, status: 'current page' as const },
+      { number: currentPage + 1, status: 'main page' as const },
     ].filter((page) => page.number > 0 && page.number <= numberOfPages);
 
     pages = pages.concat(mainPages);
 
     if (currentPage + 1 < numberOfPages) {
-      pages.push({ number: numberOfPages, status: "last page" });
+      pages.push({ number: numberOfPages, status: 'last page' });
     }
 
     return pages;
@@ -82,9 +83,9 @@ export const PagesNavigationArrows = ({
           key={number}
           className={cx(
             css.pageNumber,
-            status === "current page" && css.currentPage,
-            status === "first page" && css.firstPage,
-            status === "last page" && css.lastPage
+            status === 'current page' && css.currentPage,
+            status === 'first page' && css.firstPage,
+            status === 'last page' && css.lastPage,
           )}
           onClick={() => handleNavigation(number)}
         >
@@ -96,7 +97,7 @@ export const PagesNavigationArrows = ({
         onClick={() => handleNavigation(currentPage + 1)}
         className={cx(
           css.rightArrow,
-          currentPage === numberOfPages && css.noClick
+          currentPage === numberOfPages && css.noClick,
         )}
       >
         <MdArrowForwardIos />

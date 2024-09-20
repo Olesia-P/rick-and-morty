@@ -1,5 +1,6 @@
-import React from "react";
-import css from "./radio-button-input.module.scss";
+import React from 'react';
+import css from './radio-button-input.module.scss';
+
 type RadioButtonInputProps = {
   values: { value: string; render: string }[];
   mainState: any;

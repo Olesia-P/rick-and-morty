@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import cx from "classnames";
-import { IoClose } from "react-icons/io5";
-import css from "./list-item-modal.module.scss";
-import { SingleCharacter, SingleEpisode } from "../../types/types";
-import { useGetMultipleCharactersQuery } from "../../store/modules/api-slice";
+import React, { useState } from 'react';
+import cx from 'classnames';
+import { IoClose } from 'react-icons/io5';
+import css from './list-item-modal.module.scss';
+import { SingleCharacter, SingleEpisode } from '../../types/types';
+import { useGetMultipleCharactersQuery } from '../../store/modules/api-slice';
 
 type ListItemModalProps = {
   data: SingleEpisode;
@@ -16,7 +16,7 @@ export const ListItemModal = ({ data, setIsModalOpen }: ListItemModalProps) => {
   const charactersLinks = data.characters;
 
   const extractedCharIds = charactersLinks.map((link) => {
-    const lastSlashIndex = link.lastIndexOf("/");
+    const lastSlashIndex = link.lastIndexOf('/');
     return Number(link.slice(lastSlashIndex + 1));
   });
   const { data: charactersData } =
@@ -76,10 +76,11 @@ export const ListItemModal = ({ data, setIsModalOpen }: ListItemModalProps) => {
             </div>
 
             <button
+              type="button"
               onClick={() => setIsAllCharacters(true)}
               className={cx(
                 css.charactersButton,
-                charactersToRender?.length > 3 && css.displayNone
+                charactersToRender?.length > 3 && css.displayNone,
               )}
             >
               Show all characters

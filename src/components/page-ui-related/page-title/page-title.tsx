@@ -1,5 +1,5 @@
-import React from "react";
-import css from "./page-title.module.scss";
+import React from 'react';
+import css from './page-title.module.scss';
 
 type PageTitleProps = {
   text: string;

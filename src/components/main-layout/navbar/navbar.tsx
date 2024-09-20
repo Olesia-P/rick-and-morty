@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import { BiMoviePlay } from "react-icons/bi";
-import { BsPeopleFill } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
-import Link from "next/link";
-import { MdLocationCity } from "react-icons/md";
-import css from "./navbar.module.scss";
-import { MobileMenu } from "../navbar/mobile-menu/mobile-menu";
-import useMediaQuery from "../../../hooks/use-media-query";
+'use client';
+
+import React, { useState } from 'react';
+import { BiMoviePlay } from 'react-icons/bi';
+import { BsPeopleFill } from 'react-icons/bs';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import Link from 'next/link';
+import { MdLocationCity } from 'react-icons/md';
+import css from './navbar.module.scss';
+import { MobileMenu } from './mobile-menu/mobile-menu';
+import useMediaQuery from '../../../hooks/use-media-query';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isLowTablet = useMediaQuery(768);
   const links = [
-    { name: "Episodes", link: "/episodes/pages/1", icon: <BiMoviePlay /> },
-    { name: "Characters", link: "/characters/pages/1", icon: <BsPeopleFill /> },
-    { name: "Locations", link: "/locations/pages/1", icon: <MdLocationCity /> },
+    { name: 'Episodes', link: '/episodes/pages/1', icon: <BiMoviePlay /> },
+    { name: 'Characters', link: '/characters/pages/1', icon: <BsPeopleFill /> },
+    { name: 'Locations', link: '/locations/pages/1', icon: <MdLocationCity /> },
   ];
 
   return (

@@ -1,62 +1,62 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import css from "./characters-inputs.module.scss";
-import { CharactersState } from "../../types/types";
-import { RadioButtonInput } from "./radio-button-input/radio-button-input";
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import css from './characters-inputs.module.scss';
+import { CharactersState } from '../../types/types';
+import { RadioButtonInput } from './radio-button-input/radio-button-input';
 import {
   changeGender,
   changeName,
   changePage,
   changeStatus,
-} from "../../store/modules/characters-slice";
+} from '../../store/modules/characters-slice';
 
 export const CharactersInputs = () => {
   const genders = [
     {
-      value: "male",
-      render: "male",
+      value: 'male',
+      render: 'male',
     },
     {
-      value: "female",
-      render: "female",
+      value: 'female',
+      render: 'female',
     },
     {
-      value: "genderless",
-      render: "genderless",
+      value: 'genderless',
+      render: 'genderless',
     },
     {
-      value: "unknown",
-      render: "unknown",
+      value: 'unknown',
+      render: 'unknown',
     },
     {
-      value: "",
-      render: "not chosen",
+      value: '',
+      render: 'not chosen',
     },
   ];
   const status = [
     {
-      value: "alive",
-      render: "alive",
+      value: 'alive',
+      render: 'alive',
     },
     {
-      value: "dead",
-      render: "dead",
+      value: 'dead',
+      render: 'dead',
     },
 
     {
-      value: "unknown",
-      render: "unknown",
+      value: 'unknown',
+      render: 'unknown',
     },
     {
-      value: "",
-      render: "not chosen",
+      value: '',
+      render: 'not chosen',
     },
   ];
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const charactersParams = useSelector(
     (state: { characters: CharactersState }) =>
-      state.characters.charactersParams
+      state.characters.charactersParams,
   );
 
   const router = useRouter();
@@ -64,18 +64,18 @@ export const CharactersInputs = () => {
   const dispatch = useDispatch();
   const handleGenderFilter = (option: { value: string; render: string }) => {
     dispatch(changeGender(option.value));
-    dispatch(changePage("1"));
-    router.push("/characters/pages/1");
+    dispatch(changePage('1'));
+    router.push('/characters/pages/1');
   };
   const handleStatusFilter = (option: { value: string; render: string }) => {
     dispatch(changeStatus(option.value));
-    dispatch(changePage("1"));
-    router.push("/characters/pages/1");
+    dispatch(changePage('1'));
+    router.push('/characters/pages/1');
   };
   const handleNameFilter = (option: string) => {
     dispatch(changeName(option));
-    dispatch(changePage("1"));
-    router.push("/characters/pages/1");
+    dispatch(changePage('1'));
+    router.push('/characters/pages/1');
   };
 
   return (
