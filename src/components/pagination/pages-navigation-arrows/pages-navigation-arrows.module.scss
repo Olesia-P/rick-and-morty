@@ -11,9 +11,10 @@
         height: 20px;
         width: 20px;
         padding: 0 0.5rem;
+        background-color: white;
+        border: none;
 
         svg {
-
             height: 20px;
             width: 20px;
         }
@@ -33,6 +34,9 @@
     .pageNumber {
         padding: 0.5rem;
         cursor: pointer;
+        background-color: white;
+        border: none;
+        font: inherit;
     }
 
     .currentPage {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { MdArrowForwardIos } from "react-icons/md";
 import cx from "classnames";
@@ -12,7 +12,7 @@ type PagesNavigationArrowsProps = {
 
 type PageItem = {
   number: number;
-  status: "current page" | "main page" | "first page" | "last page";
+  isCurrent: boolean;
 };
 
 export const PagesNavigationArrows = ({
@@ -21,86 +21,110 @@ export const PagesNavigationArrows = ({
   baseUrl,
 }: PagesNavigationArrowsProps) => {
   const router = useRouter();
-  const [pagesToShow, setPagesToShow] = useState<PageItem[]>([]);
 
-  const generatePages = (
-    currentPage: number,
-    numberOfPages: number
-  ): PageItem[] => {
+  const navigateToPage = (page: number) => {
+    if (page >= 1 && page <= numberOfPages && page !== currentPage) {
+      const url = baseUrl.endsWith("/")
+        ? `${baseUrl}${page}`
+        : `${baseUrl}/${page}`;
+      router.push(url);
+    }
+  };
+
+  const isCurrentPageNearEnd = currentPage > numberOfPages - 4;
+  const pages: PageItem[] = useMemo(() => {
     let pages: PageItem[] = [];
+    let numbers: number[] = [];
 
-    if (numberOfPages <= 3) {
+    const addPage = (number: number) => {
+      pages.push({
+        number,
+        isCurrent: number === currentPage,
+      });
+    };
+
+    if (numberOfPages <= 5) {
       for (let i = 1; i <= numberOfPages; i++) {
-        pages.push({
-          number: i,
-          status: i === currentPage ? "current page" : "main page",
-        });
+        addPage(i);
       }
       return pages;
     }
 
-    if (currentPage > 2) {
-      pages.push({ number: 1, status: "first page" });
+    const addNumber = (number: number) => {
+      if (number < 1 || number > numberOfPages) return;
+      numbers.push(number);
+    };
+
+    addNumber(1);
+    addNumber(currentPage - 1);
+    addNumber(currentPage);
+    addNumber(currentPage + 1);
+    addNumber(numberOfPages);
+
+    numbers = [...new Set(numbers)];
+
+    if (numbers.length < 5) {
+      if (isCurrentPageNearEnd) {
+        for (let i = numberOfPages - 3; i <= numberOfPages; i++) {
+          addNumber(i);
+        }
+      } else {
+        for (let i = 1; i <= 4; i++) {
+          addNumber(i);
+        }
+      }
     }
 
-    const mainPages: PageItem[] = [
-      { number: currentPage - 1, status: "main page" as const },
-      { number: currentPage, status: "current page" as const },
-      { number: currentPage + 1, status: "main page" as const },
-    ].filter((page) => page.number > 0 && page.number <= numberOfPages);
+    numbers = [...new Set(numbers)];
+    numbers.sort((a, b) => a - b);
 
-    pages = pages.concat(mainPages);
-
-    if (currentPage + 1 < numberOfPages) {
-      pages.push({ number: numberOfPages, status: "last page" });
+    for (let i = 0; i < numbers.length; i++) {
+      addPage(numbers[i]);
     }
 
     return pages;
-  };
-
-  useEffect(() => {
-    setPagesToShow(generatePages(currentPage, numberOfPages));
   }, [currentPage, numberOfPages]);
 
-  const handleNavigation = (page: number) => {
-    if (page > 0 && page <= numberOfPages) {
-      router.push(`${baseUrl}${page}`);
-    }
-  };
+  const showFirstEllipsis = currentPage > 3;
+  const showLastEllipsis = currentPage < numberOfPages - 2;
 
   return (
-    <div className={css.pagesNavigation}>
-      <i
-        onClick={() => handleNavigation(currentPage - 1)}
+    <nav className={css.pagesNavigation} aria-label="Pagination">
+      <button
+        onClick={() => navigateToPage(currentPage - 1)}
         className={cx(css.leftArrow, currentPage === 1 && css.noClick)}
+        disabled={currentPage === 1}
+        aria-label="Go to previous page"
       >
-        <MdArrowForwardIos />
-      </i>
+        <MdArrowForwardIos className={css.rotatedArrow} />
+      </button>
 
-      {pagesToShow.map(({ number, status }) => (
-        <span
-          key={number}
+      {pages.map((page) => (
+        <button
+          key={page.number}
           className={cx(
             css.pageNumber,
-            status === "current page" && css.currentPage,
-            status === "first page" && css.firstPage,
-            status === "last page" && css.lastPage
+            page.isCurrent && css.currentPage,
+            page.number === 1 && showFirstEllipsis && css.firstPage,
+            page.number === numberOfPages && showLastEllipsis && css.lastPage
           )}
-          onClick={() => handleNavigation(number)}
+          onClick={() => navigateToPage(page.number)}
         >
-          {number}
-        </span>
+          {page.number}
+        </button>
       ))}
 
-      <i
-        onClick={() => handleNavigation(currentPage + 1)}
+      <button
+        onClick={() => navigateToPage(currentPage + 1)}
         className={cx(
           css.rightArrow,
           currentPage === numberOfPages && css.noClick
         )}
+        disabled={currentPage === numberOfPages}
+        aria-label="Go to next page"
       >
         <MdArrowForwardIos />
-      </i>
-    </div>
+      </button>
+    </nav>
   );
 };
