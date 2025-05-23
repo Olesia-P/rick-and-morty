@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+> I am a junior front-end developer.
+>
+> This is a pet project.
 
-## Getting Started
+# Project: Rick and Morty
 
-First, run the development server:
+This small project gave me a chance to practise making requests to the Rick and Morty API, which also has a GraphQL component. I based the main UI features on the IMDB design.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<img src="public/rick-screenshot.jpg" width="400" height="300">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Browse complete lists of episodes, characters, and locations in their respective sections;
+- Click on a specific episode to view detailed information;
+- Use filters and the search field to find needed characters.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Skills used
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- GraphQL + Apollo Client
+- TypeScript
+- Redux + RTK Query
+- Next.js
+- Scss
 
-## Learn More
+## What I learned
 
-To learn more about Next.js, take a look at the following resources:
+- Working with TypeScript;
+- Making GraphQL queries using Apollo Client;
+- Displaying paginated data (I wrote a nice reusable component for it).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Here you can check out the <a href="https://rick-and-morty-pryhun.netlify.app/" target="_blank">deployed site</a>!
